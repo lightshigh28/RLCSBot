@@ -37,26 +37,22 @@ const app = express();
 //     .then((resulter) => console.log('Connected'))
 //     .catch((err) => console.log(err));
 
-// // app.listen(5000);
-// const port = process.env.PORT || 5000;
-// app.listen(port, function() {
-//     console.log('Our app is running on http://localhost:' + port);
-// });
+// app.listen(5000);
+const port = process.env.PORT || 5000;
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
 
 client.once('ready', () => {
     console.log('Ready!');
 });
 
 client.login(process.env.token);
+// client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.Jhj0UNfCdQkWPrNN5hR9L6zFC9A');
 
 client.on('message', async message => {
     const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
-    mongoose.connect(URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
-        .then((resulter) => console.log('Connected'))
-        .catch((err) => console.log(err));
+    
     var tempMessage = message.content.toLowerCase();
     if ((tempMessage.includes("[h]")) && (tempMessage.includes("[w]")) || (tempMessage.includes("(h)")) && (tempMessage.includes("(w)")) || (tempMessage.includes(":BTH:")) && (tempMessage.includes(":BTW:"))) {
 
@@ -315,6 +311,12 @@ client.on('message', async message => {
                     // await new Promise(resolve => setTimeout(resolve, 1000));
 
                     if (hasGame == "RL" && wantGame == "RL") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new RLRL(data);
                         trade.save()
                             .then((result) => {
@@ -325,6 +327,12 @@ client.on('message', async message => {
                             })
                     }
                     if (hasGame == "RL" && wantGame == "CS") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new RLCS(data);
                         trade.save()
                             .then((result) => {
@@ -335,6 +343,12 @@ client.on('message', async message => {
                             })
                     }
                     if (hasGame == "RL" && wantGame == "OG") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new RLOG(data);
                         trade.save()
                             .then((result) => {
@@ -346,6 +360,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "RL" && wantGame == "CASH") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new RLCASH(data);
                         trade.save()
                             .then((result) => {
@@ -357,6 +377,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "CS" && wantGame == "CS") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new CSCS(data);
                         trade.save()
                             .then((result) => {
@@ -368,6 +394,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "CS" && wantGame == "OG") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new CSOG(data);
                         trade.save()
                             .then((result) => {
@@ -379,6 +411,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "CS" && wantGame == "CASH") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new CSCASH(data);
                         trade.save()
                             .then((result) => {
@@ -390,6 +428,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "OG" && wantGame == "OG") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new OGOG(data);
                         trade.save()
                             .then((result) => {
@@ -401,6 +445,12 @@ client.on('message', async message => {
 
                     }
                     if (hasGame == "OG" && wantGame == "CASH") {
+                        mongoose.connect(URI, {
+                            useNewUrlParser: true,
+                            useUnifiedTopology: true
+                        })
+                        .then((resulter) => console.log('Connected'))
+                        .catch((err) => console.log(err));
                         const trade = new OGCASH(data);
                         trade.save()
                             .then((result) => {
