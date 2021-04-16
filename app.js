@@ -47,8 +47,7 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-// client.login(process.env.token);
-client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.Jhj0UNfCdQkWPrNN5hR9L6zFC9A');
+client.login(process.env.token);
 
 client.on('message', async message => {
     const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
