@@ -29,27 +29,35 @@ var counter4 = 0;
 const app = express();
 
 // connect to db
-const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
-mongoose.connect(URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then((resulter) => console.log('Connected'))
-    .catch((err) => console.log(err));
+// const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
+// mongoose.connect(URI, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     })
+//     .then((resulter) => console.log('Connected'))
+//     .catch((err) => console.log(err));
 
-// app.listen(5000);
-const port = process.env.PORT || 5000;
-app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
-});
+// // app.listen(5000);
+// const port = process.env.PORT || 5000;
+// app.listen(port, function() {
+//     console.log('Our app is running on http://localhost:' + port);
+// });
 
 client.once('ready', () => {
     console.log('Ready!');
 });
 
-client.login(process.env.token);
+// client.login(process.env.token);
+client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.Jhj0UNfCdQkWPrNN5hR9L6zFC9A');
 
 client.on('message', async message => {
+    const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
+    mongoose.connect(URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+        .then((resulter) => console.log('Connected'))
+        .catch((err) => console.log(err));
     var tempMessage = message.content.toLowerCase();
     if ((tempMessage.includes("[h]")) && (tempMessage.includes("[w]")) || (tempMessage.includes("(h)")) && (tempMessage.includes("(w)")) || (tempMessage.includes(":BTH:")) && (tempMessage.includes(":BTW:"))) {
 
@@ -431,6 +439,7 @@ client.on('message', async message => {
             }
         }
     }
+
 });
 
 
