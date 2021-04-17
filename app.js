@@ -29,13 +29,13 @@ var counter4 = 0;
 const app = express();
 
 // connect to db
-// const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
-// mongoose.connect(URI, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     })
-//     .then((resulter) => console.log('Connected'))
-//     .catch((err) => console.log(err));
+const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
+mongoose.connect(URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then((resulter) => console.log('Connected'))
+    .catch((err) => console.log(err));
 
 // app.listen(5000);
 const port = process.env.PORT || 5000;
@@ -47,8 +47,8 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-client.login(process.env.token);
-// client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.Jhj0UNfCdQkWPrNN5hR9L6zFC9A');
+// client.login(process.env.token);
+client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.U58EkWb6Xi-qlFM47gL-2kYox-I');
 
 client.on('message', async message => {
     const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
@@ -286,14 +286,15 @@ client.on('message', async message => {
 
                     var checkHash = haveItem + ' ' + wantItem + ' ' + messageAuthor;
                     var hash = crypto.createHash('md5').update(checkHash).digest('hex');
-                    if (allHashes.indexOf(hash) !== -1) {
+                    // if (allHashes.indexOf(hash) !== -1) {
+                    if (allHashes.some((data) => data.hash === hash)) {
                         // console.log("Exists ");
                         counter2 = counter2 + 1;
                         continue;
                     } else {
-                        allHashes.push(hash);
+                        // allHashes.push(hash);
+                        allHashes.push({hash, expiry: new Date(timeStamp + 24 * 60 * 60 * 1000).getTime()})
                     }
-
 
                     data = {
                         Discord: messageAuthor,
@@ -307,183 +308,44 @@ client.on('message', async message => {
                         ServerLogo: serverLogo
                     }
 
-                    // console.log(data._id)
-                    // await new Promise(resolve => setTimeout(resolve, 1000));
-
                     if (hasGame == "RL" && wantGame == "RL") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new RLRL(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(1)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "RL" && wantGame == "CS") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new RLCS(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(2)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "RL" && wantGame == "OG") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new RLOG(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(3)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "RL" && wantGame == "CASH") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new RLCASH(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(4)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "CS" && wantGame == "CS") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new CSCS(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(5)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "CS" && wantGame == "OG") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new CSOG(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(6)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "CS" && wantGame == "CASH") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new CSCASH(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(7)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "OG" && wantGame == "OG") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new OGOG(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(8)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
                     if (hasGame == "OG" && wantGame == "CASH") {
-                        mongoose.connect(URI, {
-                            useNewUrlParser: true,
-                            useUnifiedTopology: true
-                        })
-                        .then((resulter) => console.log('Connected'))
-                        .catch((err) => console.log(err));
                         const trade = new OGCASH(data);
-                        trade.save()
-                            .then((result) => {
-                                // console.log(9)
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-
+                        trade.save().catch((error) => {console.log(error)})
                     }
 
                     console.log(counter3 + ' Added. ' + counter1 + ' Total. Source: ' + messageAuthor + ' | ' + hasGame + wantGame + ' - ' + channelName + ' | ' + discordServer);
-                    // console.log("ALL- " + counter1 + " EXISTED- " + counter2 + " ADDED- " + counter3)
-                    // if (rlcs.length == 10) {
-                    //     var uploadrlcs = rlcs;
-                    //     rlcs = [];
-                    //     var j;
-                    //     for (j = 0; j < uploadrlcs.length; j++) {
-                    //         var myDataRef = firebase.database().ref('RL-CS');
-                    //         myDataRef.push(uploadrlcs[j]);
-                    //         await sleep(500);
-                    //     }
-                    // }
-                    // if (cscs.length == 10) {
-                    //     var uploadcscs = cscs;
-                    //     cscs = [];
-                    //     var j;
-                    //     for (j = 0; j < uploadcscs.length; j++) {
-                    //         var myDataRef = firebase.database().ref('CS-CS');
-                    //         myDataRef.push(uploadcscs[j]);
-                    //         await sleep(500);
-                    //     }
-                    // }
                 }
             }
         }
@@ -491,24 +353,7 @@ client.on('message', async message => {
 
 });
 
-
-// setInterval(function () {
-// 	var pussylips = ['RL-RL','RL-CS','RL-OG','RL-CASH','CS-CS','CS-OG','CS-CASH','OG-OG','OG-CASH']
-// 	for (dicktip in pussylips){
-// 		var bigtits = firebase.database().ref(dicktip);
-// 		bigtits.once('value', function(snapshot) {
-// 			snapshot.forEach(function(childSnapshot) {
-// 				// var cumshot = childSnapshot.val(); 
-// 				// cumshot = cumshot.split('▓■⁰≙⁰■▓');
-// 				// let currentTime = new Date();
-// 				// let uploadTime = new Date(cumshot[3]);
-// 				// let hours = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60));
-// 				// let days = Math.floor((currentTime - uploadTime) / (1000 * 60 * 60 * 24));
-// 				// if (days >= 1) {
-// 				bigtits.child(childSnapshot.key).remove();
-// 				// }
-// 			});
-// 		});
-// 	}
-// 	console.log("Removed")
-// }, 30 * 60 * 1000); 
+setInterval(function () {
+	const newData = allHashes.filter((hash) => (hash.expiry)  >  new Date().getTime()) 
+    allHashes = newData;
+}, 30 * 60 * 1000); 
