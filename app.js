@@ -17,8 +17,6 @@ const OGOG = Trade.OGOG;
 const OGCASH = Trade.OGCASH;
 
 
-
-
 var allHashes = [];
 var counter1 = 0;
 var counter2 = 0;
@@ -47,8 +45,7 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-// client.login(process.env.token);
-client.login('ODA5ODQ5OTEwMTczMTA2MTk4.YCbFgA.U58EkWb6Xi-qlFM47gL-2kYox-I');
+client.login(process.env.token);
 
 client.on('message', async message => {
     const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
@@ -356,4 +353,63 @@ client.on('message', async message => {
 setInterval(function () {
 	const newData = allHashes.filter((hash) => (hash.expiry)  >  new Date().getTime()) 
     allHashes = newData;
+
+    // DATABASE 
+
+    try{
+        RLRL.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        RLCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        RLOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        RLCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        CSCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        CSOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        CSCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        OGOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    try{
+        OGCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
+    } catch {
+        console.log("Not Avail")
+    }
+    
+    
+
 }, 30 * 60 * 1000); 
