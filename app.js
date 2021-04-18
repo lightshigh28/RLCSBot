@@ -45,7 +45,7 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-client.login(process.env.token);
+// client.login(process.env.token);
 
 client.on('message', async message => {
     const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
@@ -350,66 +350,67 @@ client.on('message', async message => {
 
 });
 
-setInterval(function () {
+setInterval(async function () {
 	const newData = allHashes.filter((hash) => (hash.expiry)  >  new Date().getTime()) 
     allHashes = newData;
 
-    // DATABASE 
+    console.log("DELETED")
 
-    try{
-        RLRL.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        RLCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        RLOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        RLCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        CSCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        CSOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        CSCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        OGOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    try{
-        OGCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}})
-    } catch {
-        console.log("Not Avail")
-    }
-    
-    
+
+    await RLRL.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await RLCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await RLOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await RLCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await CSCS.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await CSOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await CSCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await OGOG.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+    await OGCASH.deleteMany({"createdAt":{$lt:new Date(Date.now() - 24*60*60 * 1000)}}).then(function(){
+        console.log("Data deleted"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+
+
 
 }, 30 * 60 * 1000); 
