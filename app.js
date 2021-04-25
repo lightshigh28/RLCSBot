@@ -87,7 +87,7 @@ client.on('message', async message => {
                     var wantGame = "CS";
                 }
 
-                var discordURL = "'https://discord.gg/vYyJnSrntZ'";
+                var discordURL = "https://discord.gg/vYyJnSrntZ";
                 var discordServer = "RLCS.TRADE";
                 var serverLogo = "/images/rlcsLogo.png"
             };
@@ -100,7 +100,7 @@ client.on('message', async message => {
                     var wantGame = "RL";
                 }
 
-                var discordURL = "'https://discord.gg/QKxsVtNTWZ'";
+                var discordURL = "https://discord.gg/QKxsVtNTWZ";
                 var discordServer = "Rocketverse";
                 var serverLogo = "/images/rocketverselogo.png"
 
@@ -113,7 +113,7 @@ client.on('message', async message => {
                     var hasGame = "RL";
                     var wantGame = "RL";
                 }
-                var discordURL = "'https://discord.gg/dxKsVHNKdG'";
+                var discordURL = "https://discord.gg/dxKsVHNKdG";
                 var discordServer = "RL Central";
                 var serverLogo = "/images/rlcentrallogo.png"
             };
@@ -138,7 +138,7 @@ client.on('message', async message => {
                     var hasGame = "RL";
                     var wantGame = "RL";
                 }
-                var discordURL = "'https://discord.gg/kr6RbvwfwD'";
+                var discordURL = "https://discord.gg/kr6RbvwfwD";
                 var discordServer = "BoSF";
                 var serverLogo = "/images/bosflogo.png"
 
@@ -160,7 +160,7 @@ client.on('message', async message => {
                     var wantGame = "CASH";
                 }
 
-                var discordURL = "'https://discord.gg/trade'";
+                var discordURL = "https://discord.gg/trade";
                 var discordServer = "Rocket Planet";
                 var serverLogo = "/images/rocketplanetlogo.png"
             };
@@ -220,7 +220,7 @@ client.on('message', async message => {
                     var wantGame = "CASH";
                 }
 
-                var discordURL = "'https://discord.gg/tradecentral'";
+                var discordURL = "https://discord.gg/tradecentral";
                 var discordServer = "Trade Central";
                 var serverLogo = "/images/tclogo.png"
             };
