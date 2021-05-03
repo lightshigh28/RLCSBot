@@ -160,7 +160,7 @@ client.on('message', async message => {
                 }
                 var discordURL = "https://discord.gg/TDdEKsnyhz";
                 var discordServer = "Dynamic Trades";
-                var serverLogo = "/images/dyniamictradeslogo.png"
+                var serverLogo = "/images/dynamictradeslogo.png"
 
             };
 
