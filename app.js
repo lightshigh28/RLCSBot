@@ -27,7 +27,8 @@ var counter4 = 0;
 const app = express();
 
 // connect to db
-const URI = "mongodb+srv://sample:sample@rlcs.bxguj.mongodb.net/trades?retryWrites=true&w=majority";
+const URI = "mongodb+srv://rlcs:trade@rlcstrade.qt3xj.mongodb.net/RLCSTrade?retryWrites=true&w=majority";
+
 mongoose.connect(URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -128,7 +129,40 @@ client.on('message', async message => {
                     var hasGame = "RL";
                     var wantGame = "CASH";
                 }
+                var discordURL = "https://discord.gg/s3dmv4Kay4";
+                var discordServer = "TradeHub";
+                var serverLogo = "/images/tradehublogo.png"
             }
+
+            //RLUNITED
+            if (String(serverId) == "661781642918232085") {
+
+                if (String(channelId) == "763189582685929502") {
+                    var hasGame = "RL";
+                    var wantGame = "RL";
+                }
+                var discordURL = "https://discord.gg/t4F2kWpkcw";
+                var discordServer = "RL United";
+                var serverLogo = "/images/rlunitedlogo.png"
+
+            };
+
+            //DynamicTrades
+            if (String(serverId) == "596396427463360533") {
+
+                if (String(channelId) == "806326215727251516") {
+                    var hasGame = "RL";
+                    var wantGame = "RL";
+                }
+                if (String(channelId) == "806326221691813928") {
+                    var hasGame = "RL";
+                    var wantGame = "CS";
+                }
+                var discordURL = "https://discord.gg/TDdEKsnyhz";
+                var discordServer = "Dynamic Trades";
+                var serverLogo = "/images/dyniamictradeslogo.png"
+
+            };
 
             //BoSF
             if (String(serverId) == "593648497530634251") {
